@@ -1,0 +1,136 @@
+<div class="bg2">
+  <div id="Employee_Management" class="container">
+
+    <nav  class="navbar navbar-expand-lg bg-body-tertiary" id="navbar">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Employee Management
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#add_Employee"
+            type="submit">Add
+            Employee</button>
+        </div>
+      </div>
+    </nav>
+
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Employee Id</th>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Salary</th>
+          <th scope="col">Action</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let employee of empList">
+          <td>{{employee.name}} </td>
+          <td>{{employee.email}} </td>
+          <td>{{employee.salary}} </td>
+          <td>
+            <button type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal"
+              data-bs-target="#edit_employee" (click)="editemployee(employee)">Edit</button>
+            <button type="button" class="btn btn-outline-danger " (click)="deleteemployee(employee)">Delete</button>
+
+
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+
+    <!-- Add Employee modal -->
+    <div class="modal fade" id="add_Employee" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Adding Employee?</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+
+            <form [formGroup]="empDetail" (ngSubmit)="add_employee()">
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Name</label>
+                <input type="text" formControlName="name" class="form-control" id="name" aria-describedby="emailHelp">
+              </div>
+
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email</label>
+                <input type="email" formControlName="email" class="form-control" id="email"
+                  aria-describedby="emailHelp">
+              </div>
+
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Salary</label>
+                <input type="text" formControlName="salary" class="form-control" id="salary"
+                  aria-describedby="emailHelp">
+              </div>
+
+
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                  (click)="add_employee()">Add</button>
+              </div>
+
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- Edit Employee Modal -->
+    <div class="modal fade" id="edit_employee" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Employee </h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="empDetail" (ngSubmit)="updateEmployee()">
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Name</label>
+                <input type="text" formControlName="name" class="form-control" id="name" aria-describedby="emailHelp">
+              </div>
+
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email</label>
+                <input type="email" formControlName="email" class="form-control" id="email"
+                  aria-describedby="emailHelp">
+              </div>
+
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Salary</label>
+                <input type="text" formControlName="salary" class="form-control" id="salary"
+                  aria-describedby="emailHelp">
+              </div>
+
+
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal"
+                  (click)="updateEmployee()">Update</button>
+              </div>
+
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
